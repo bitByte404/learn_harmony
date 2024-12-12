@@ -1,5 +1,7 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/06_xiecheng/ScrollPage",
+    "pages/06_xiecheng/ScrollExample"
   ]
 }
