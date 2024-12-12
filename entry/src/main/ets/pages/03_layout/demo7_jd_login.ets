@@ -60,26 +60,35 @@ struct Index {
 
 
         Row() {
-          Image($r('app.media.jd_circle'))
-            .width(14)
-            .fillColor(Color.Grey)
+          Checkbox()
+            .height(14)
 
-          Flex({
-            wrap: FlexWrap.Wrap
-          }) {
-            Text('已经阅读并同意')
-              .fontColor(Color.Grey)
-              .fontSize(12)
-            Text('《京东隐私政策》')
-              .fontSize(12)
+          Text() {
+            Span('已经阅读并同意')
+            Span('《京东隐私政策》')
               .fontColor(Color.Blue)
-            Text('《京东用户服务协议》')
+            Span('《京东用户服务协议》')
               .fontColor(Color.Blue)
-              .fontSize(12)
-            Text('未注册的手机号将自动创建京东账号')
-              .fontSize(12)
-              .fontColor(Color.Grey)
-          }
+            Span('未注册的手机号将自动创建京东账号')
+          }.fontSize(14)
+          .fontColor(Color.Grey)
+
+          /*          Flex({
+                      wrap: FlexWrap.Wrap
+                    }) {
+                      Text('已经阅读并同意')
+                        .fontColor(Color.Grey)
+                        .fontSize(12)
+                      Text('《京东隐私政策》')
+                        .fontSize(12)
+                        .fontColor(Color.Blue)
+                      Text('《京东用户服务协议》')
+                        .fontColor(Color.Blue)
+                        .fontSize(12)
+                      Text('未注册的手机号将自动创建京东账号')
+                        .fontSize(12)
+                        .fontColor(Color.Grey)
+                    }*/
         }
         .alignItems(VerticalAlign.Top)
         .width('100%')
