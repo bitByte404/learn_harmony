@@ -1,6 +1,16 @@
+import { window } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Index {
+  onPageShow(): void {
+    window.getLastWindow(getContext(this), (err, data) => {
+      if (!err.code) {
+        data.setWindowLayoutFullScreen(true);
+      }
+    })
+  }
+
   build() {
     Column() {
       Stack({
