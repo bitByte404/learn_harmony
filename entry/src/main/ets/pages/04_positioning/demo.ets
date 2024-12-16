@@ -190,7 +190,6 @@ struct Index {
                       .fontColor(Color.Grey)
                   }
                   .fontSize(14)
-
                 }
                 .backgroundColor(Color.White)
                 .padding({
