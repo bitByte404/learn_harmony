@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/06_xiecheng/ScrollPage",
-    "pages/06_xiecheng/ScrollExample"
+    "pages/06_xiecheng/ScrollExample",
+    "pages/20_animation/HotPage"
   ]
 }
