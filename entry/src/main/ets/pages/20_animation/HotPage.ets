@@ -1,6 +1,6 @@
 @Entry
 @Component
-struct Index {
+struct HotPage {
   topicScroller: ListScroller = new ListScroller()
   @State bannerList: BannerItem[] = [
     { imgUrl: $r('app.media.banner_01_1'), imgTitle: '谷歌杀入开源大模型，凭什么问鼎王座？' },
@@ -121,6 +121,9 @@ struct Index {
       Row({ space: 15 }) {
         Image($r('app.media.user_01'))
           .width(20)
+          .onClick(() => {
+            this.isShowSideBar = true
+          })
         Image($r('app.media.more_01'))
           .width(20)
           .bindContentCover($$this.isShowTopic, this.AllTopic())
@@ -396,26 +399,64 @@ struct Index {
   }
 
   @Builder
+  MainPage() {
+    SideBarContainer() {
+
+      Column() {
+        Image($r('app.media.cancel'))
+          .height(24)
+          .onClick(() => {
+            this.isShowSideBar = false
+          })
+          .position({
+            top: 20,
+            left: 20
+          })
+        Text('内容待完成')
+          .margin({
+            top: 40
+          })
+          .alignSelf(ItemAlign.Center)
+      }
+      .backgroundColor(Color.White)
+      .alignItems(HorizontalAlign.Start)
+      .height('100%')
+      .width('60%')
+      .borderRadius({
+        topLeft: 10,
+        bottomLeft: 10
+      })
+
+      Column() {
+        this.MyHead()
+        Scroll(this.scroller) {
+          Column() {
+            this.MySwiper()
+            this.ContentRow()
+            this.RecommendContentList()
+          }
+        }
+        .scrollBar(BarState.Off)
+        .padding({
+          bottom: 60
+        })
+      }
+    }
+    .showSideBar(this.isShowSideBar)
+    .showControlButton(false)
+    .sideBarPosition(SideBarPosition.End)
+    .width('100%')
+    .height('100%')
+  }
+
+  @State isShowSideBar: boolean = false
+
+  @Builder
   TabItems() {
     ForEach(this.tabs, (item: string, index) => {
       TabContent() {
         if (index == 0) {
-          Column() {
-            this.MyHead()
-            Scroll(this.scroller) {
-              Column() {
-                this.MySwiper()
-                this.ContentRow()
-                this.RecommendContentList()
-              }
-            }
-            .scrollBar(BarState.Off)
-            .padding({
-              bottom: 60
-            })
-          }
-          .width('100%')
-          .height('100%')
+          this.MainPage()
         } else if (index == 1) {
           Image($r('app.media.zfb_tab_life'))
             .width('100%')
