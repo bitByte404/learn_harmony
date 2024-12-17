@@ -1,4 +1,5 @@
-import { it } from '@ohos/hypium'
+import { promptAction } from '@kit.ArkUI'
+import call from '@ohos.telephony.call'
 
 @Entry
 @Component
@@ -35,6 +36,7 @@ struct Index {
     { initial: 'Z', nameList: ['珍珠', '紫薇', '紫霞', '紫竹', '紫云', '紫燕', '紫鸢', '紫藤', '紫荆', '紫罗兰'] },
   ]
   scroller: ListScroller = new ListScroller()
+  @State sIndex: number = 0
 
   getRandomColor(): string {
     let r = Math.floor(Math.random() * 255)
@@ -42,6 +44,12 @@ struct Index {
     let b = Math.floor(Math.random() * 255)
     return `rgba(${r}, ${g}, ${b}, 0.5)`
   }
+
+  @State rightList: string[] =
+    ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+      'W',
+      'X', 'Y', 'Z']
+  @State isScrolling: boolean = false
 
   @Builder
   MyHeader(title: string) {
@@ -59,61 +67,101 @@ struct Index {
   }
 
   build() {
-    List({
-      initialIndex: 0,
-      scroller: this.scroller
-    }) {
-      ListItem() {
-        Text('通讯录')
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-      }
-      .onClick(() => {
-        this.scroller.scrollTo({
-          xOffset: 0,
-          yOffset: 1000,
-          animation: true
-        })
-      })
-      .padding(10)
-      .backgroundColor(Color.White)
-      .width('100%')
-
-      ForEach(this.contacts, (contact: ContactData, index) => {
-        ListItemGroup({
-          header: this.MyHeader(contact.initial),
-          // space: 5
-        }) {
-          ForEach(contact.nameList, (item: string, index) => {
-            ListItem() {
-              Row({ space: 10 }) {
-                Image($r('app.media.user_01'))
-                  .width(30)
-                  .fillColor(Color.White)
-                  .backgroundColor(this.getRandomColor())
-                  .borderRadius(15)
-                Text(item)
-              }
-              .padding(10)
-              .width('100%')
-            }
-            .backgroundColor(Color.White)
-          })
+    Stack({ alignContent: Alignment.End }) {
+      List({
+        initialIndex: 0,
+        scroller: this.scroller
+      }) {
+        ListItem() {
+          Text('通讯录')
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
         }
-        .divider({
-          strokeWidth: 5,
-          color: Color.Orange,
-          startMargin: 30,
-          endMargin: 30
+        .onClick(() => {
+          this.scroller.scrollTo({
+            xOffset: 0,
+            yOffset: 1000,
+            animation: true
+          })
         })
+        .padding(10)
+        .backgroundColor(Color.White)
+        .width('100%')
+
+        ForEach(this.contacts, (contact: ContactData, index) => {
+          ListItemGroup({
+            header: this.MyHeader(contact.initial),
+            // space: 5
+          }) {
+            ForEach(contact.nameList, (item: string, index) => {
+              ListItem() {
+                Row({ space: 10 }) {
+                  Image($r('app.media.user_01'))
+                    .width(30)
+                    .fillColor(Color.White)
+                    .backgroundColor(this.getRandomColor())
+                    .borderRadius(15)
+                  Text(item)
+                }
+                .padding(10)
+                .width('100%')
+              }
+              .backgroundColor(Color.White)
+            })
+          }
+          .divider({
+            strokeWidth: 3,
+            color: Color.Orange,
+            startMargin: 25,
+            endMargin: 40
+          })
+        })
+      }
+      // .sticky(StickyStyle.Header)
+      // .backgroundColor('#ccc')
+      .width('100%')
+      .height('100%')
+      .onScrollIndex((start: number, end: number, center: number) => {
+        if (this.isScrolling) {
+          return // 正在滚动，不执行
+        }
+        this.sIndex = start
       })
+
+      AlphabetIndexer({
+        arrayValue: this.rightList,
+        selected: this.sIndex
+      })
+        .itemSize(20)
+        .selectedFont({
+          size: 20,
+          // style: FontStyle.Italic
+        })
+        .font({
+          size: 18
+        })
+        .usingPopup(true)// 点击的时候显示浮窗提示
+        .onSelect((index) => {
+          // 开始滚动，记录状态
+          this.isScrolling = true
+          this.scroller.scrollToIndex(index, true)
+          // promptAction.showToast({ message: `${index.toString()}` })
+          // 希望点击的滚动，不要触发左侧的监听(节流阀)
+          // 当在滚动的过程中，关闭阀门, 左侧监听不执行
+
+          // 需要运动完成后，将isScrolling调整会false
+          setTimeout(() => {
+            this.isScrolling = true
+          }, 500)
+        })
+
     }
-    // .sticky(StickyStyle.Header)
-    .backgroundColor('#ccc')
-    .width('100%')
-    .height('100%')
   }
 }
+
+setTimeout(() => {
+  console.log('等待5s后执行')
+}, 5000)
 
 interface ContactData {
   initial: string
