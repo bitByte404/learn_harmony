@@ -153,7 +153,7 @@ struct HotPage {
       bottom: 10
     })
     .width('100%')
-    .backgroundColor('#ccc')
+    .backgroundColor('#F4F4F4')
   }
 
   @Builder
