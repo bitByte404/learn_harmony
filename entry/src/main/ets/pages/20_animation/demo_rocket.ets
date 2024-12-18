@@ -7,7 +7,6 @@ struct Index {
   @State toTopOpacity: number = 0
   @State toTopTranslateY: number = 0
   @State homeTranslateY: number = 0
-  @State lastScrollOffsetY: number = 0
   // 控制器
   mainScroller: Scroller = new Scroller()
 
@@ -24,12 +23,15 @@ struct Index {
           }
 
           .onWillScroll(() => {
-            if (this.mainScroller.currentOffset().yOffset > this.lastScrollOffsetY) {
+            if (this.mainScroller.currentOffset().yOffset > 300) {
               this.homeTranslateY = -25
+              this.toTopOpacity = 1
+              this.toTopTranslateY = -10
             } else {
               this.homeTranslateY = 0
+              this.toTopOpacity = 0
+              this.toTopTranslateY = 0
             }
-            this.lastScrollOffsetY = this.mainScroller.currentOffset().yOffset
           })
           .fullSize()
 
@@ -44,11 +46,17 @@ struct Index {
               .fontColor(Color.Gray)
           }
           .translate({ y: this.toTopTranslateY })
+          .onClick(() => {
+            this.mainScroller.scrollEdge(Edge.Top)
+          })
           .opacity(this.toTopOpacity)
           .width(40)
           .height(40)
           .backgroundColor(Color.White)
           .borderRadius(20)
+          .animation({
+            duration: 300
+          })
           .offset({ x: -10, y: -40 })
 
         }
@@ -72,7 +80,6 @@ struct Index {
     })
     .onChange((index: number) => {
       this.currentIndex = index
-
     })
   }
 
