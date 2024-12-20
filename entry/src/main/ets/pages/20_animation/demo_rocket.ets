@@ -72,7 +72,6 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-    .barBackgroundColor('#ccc')
     .scrollable(false)
     .animationDuration(0)
     .onTabBarClick((index: number) => {
