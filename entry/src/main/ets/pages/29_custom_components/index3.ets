@@ -93,9 +93,10 @@ struct Index {
         }
       }) {
         // 如果只有一个 builderParam 直接在后面 { 结构 } // 尾随闭包
-        // Row后面的{} 就是尾随闭包
         Button('点我')
       }
+
+      // .width(59) 使用尾随闭包后就不能在设置属性了
     }
     .width('100%')
     // .height('100%')
