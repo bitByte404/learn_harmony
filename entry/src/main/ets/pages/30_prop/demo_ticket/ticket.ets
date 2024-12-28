@@ -1,6 +1,6 @@
 import filterItemComp from "./component/filterItemComp"
 import listComp from "./component/listComp"
-import { AddressModel } from "./model/ticketData"
+import { AddressModel, iTicketData, sourceData } from "./model/ticketData"
 
 
 @Entry
@@ -16,14 +16,23 @@ struct Index {
     new AddressModel(5, '广州', false),
     new AddressModel(6, '广州北', false)
   ]
+  @State tickets: iTicketData[] = []
   @State selectedCity: string[] = []
 
   build() {
     Column() {
       // 选中条件显示
-      Row() {
+      Row({ space: 4 }) {
         Text('您选中的条件：')
-        Text('广州南')
+        Flex({
+          wrap: FlexWrap.Wrap
+        }) {
+          ForEach(this.selectedCity, (city: string, index) => {
+            Text(city)
+              .margin({ left: 4, bottom: 4 })
+          })
+        }
+        .layoutWeight(1)
       }
       .width('100%')
       .margin({ top: 10, left: 10 })
@@ -33,9 +42,21 @@ struct Index {
         Scroll() {
           Row() {
             // 出发
-            ForEach(Array.from({ length: 3 }), (item: AddressModel) => {
+            ForEach(this.beginList, (item: AddressModel, index) => {
               // 给clickHander传数据的时候，记得使用箭头函数包括起来，这样this不会改变
-              filterItemComp()
+              filterItemComp({
+                data: item,
+                select: () => {
+                  item.isSelected = !item.isSelected
+                  this.beginList.splice(index, 1, item)
+                  this.selectedCity = this.beginList
+                    .filter(item => item.isSelected)
+                    .map(value => value.text)
+                  this.tickets = sourceData.filter((item) => {
+                    return this.selectedCity.includes(item.beginStation)
+                  })
+                }
+              })
             })
 
           }
@@ -47,7 +68,9 @@ struct Index {
       .margin({ top: 10 })
 
       //   车站列表
-      listComp()
+      listComp({
+        list: this.tickets
+      })
         .layoutWeight(1)
 
     }
