@@ -39,7 +39,7 @@ struct ZhiHu {
                   area: this.rootComment.area,
                   likeNum: this.rootComment.likeFlag ? this.rootComment.likeNum-- :
                     this.rootComment.likeNum++,
-                  likeFlag: !this.rootComment.likeFlag
+                  likeFlag: !this.rootComment.likeFlag,
                 }
               }
             })
@@ -57,17 +57,25 @@ struct ZhiHu {
               CommentItem({
                 commentData: item,
                 like: () => {
-                  this.commentList.splice(index, 1, {
-                    id: this.commentList[index].id,
-                    avatar: this.commentList[index].avatar,
-                    author: this.commentList[index].author,
-                    content: this.commentList[index].content,
-                    time: this.commentList[index].time,
-                    area: this.commentList[index].area,
-                    likeNum: this.commentList[index].likeFlag ? this.commentList[index].likeNum - 1 :
-                      this.commentList[index].likeNum + 1,
-                    likeFlag: !this.commentList[index].likeFlag
-                  })
+                  // 修改自身或者第一层数据才能触发界面更新
+                  // this.commentList.splice(index, 1, {
+                  //   id: this.commentList[index].id,
+                  //   avatar: this.commentList[index].avatar,
+                  //   author: this.commentList[index].author,
+                  //   content: this.commentList[index].content,
+                  //   time: this.commentList[index].time,
+                  //   area: this.commentList[index].area,
+                  //   likeNum: this.commentList[index].likeFlag ? this.commentList[index].likeNum - 1 :
+                  //     this.commentList[index].likeNum + 1,
+                  //   likeFlag: !this.commentList[index].likeFlag
+                  // })
+                  if (item.likeFlag) {
+                    item.likeNum--
+                  } else {
+                    item.likeNum++
+                  }
+                  item.likeFlag = !item.likeFlag
+                  this.commentList.splice(index, 1, item)
                 }
               })
             })
@@ -89,9 +97,9 @@ struct ZhiHu {
           let time = `${now.getMonth() + 1}-${now.getDate()}`
           this.commentList
             .unshift({
-              id: 1,
-              avatar: $r('app.media.avatar'),
-              author: '帅锅锅',
+              id: Number(now),
+              avatar: 'https://blog-img-bitebyte.oss-cn-chengdu.aliyuncs.com/img/avatar1.jpg',
+              author: '大橙子',
               content: content,
               time: time,
               area: '重庆',

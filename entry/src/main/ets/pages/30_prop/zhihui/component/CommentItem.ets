@@ -20,7 +20,12 @@ export default struct CommentItem {
     Row() {
       Image(this.commentData.avatar)
         .width(32)
-        .height(32)
+        .height(32)/**
+         * 为了不阻塞，图片一般是分开加载的
+         * syncLoad(true) 避免更新数据后图片闪烁
+         * 建议加载尺寸较小的图片时，设置为true 将原来的图片加载，直接提到主线程执行
+         */
+        .syncLoad(true)
         .borderRadius(16)
       Column({ space: 10 }) {
         Text(this.commentData.author)

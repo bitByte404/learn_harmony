@@ -1,5 +1,3 @@
-import { text } from "@kit.ArkGraphics2D"
-
 @Component
 export default struct ReplyInput {
   @State inputText: string = ''
@@ -20,10 +18,14 @@ export default struct ReplyInput {
           left: 10
         })
         .onClick(() => {
-          if (this.inputText) {
-            this.replyCallback(this.inputText)
-            this.inputText = ''
+          if (this.inputText.trim() == '') {
+            AlertDialog.show({
+              message: '回复内容不能为空'
+            })
+            return
           }
+          this.replyCallback(this.inputText)
+          this.inputText = ''
         })
     }
     .padding(10)
