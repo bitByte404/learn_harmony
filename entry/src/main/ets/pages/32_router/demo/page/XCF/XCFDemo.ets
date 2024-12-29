@@ -64,6 +64,7 @@ struct ContentCom {
                     })
                   })
                 }
+                .sharedTransition(`${cateItem.id}`, { duration: 200 })
               })
             }
             .columnsTemplate('1fr 1fr 1fr')

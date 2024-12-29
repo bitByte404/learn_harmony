@@ -11,12 +11,23 @@ struct LoginPage {
       Text('淘宝')
         .fontSize(30)
         .fontColor(Color.Orange)
+        .sharedTransition('title', { duration: 500 }) // 共享元素动画
       TextInput({ placeholder: '请输入用户名', text: $$this.username })
       TextInput({ placeholder: '请输入密码', text: $$this.password })
       Button('登录')
         .onClick(() => {
           // 跳转(替换)
           router.replaceUrl({
+            url: 'pages/32_router/HomePage',
+            params: {
+              username: this.username,
+              password: this.password
+            }
+          })
+        })
+      Button('登录2')
+        .onClick(() => {
+          router.pushUrl({
             url: 'pages/32_router/HomePage',
             params: {
               username: this.username,

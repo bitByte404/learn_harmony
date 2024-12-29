@@ -32,6 +32,10 @@ struct HomePage {
         .fontSize(30)
       Text(`用户名：${this.homeUsername}`)
       Text(`密码：${this.homePassword}`)
+      Text('淘宝')
+        .fontSize(30)
+        .fontColor(Color.Green)
+        .sharedTransition('title', { duration: 500 })
     }
     .height('100%')
     .width('100%')
