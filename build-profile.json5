@@ -36,6 +36,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "CarModule",
+      "srcPath": "./CarModule",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

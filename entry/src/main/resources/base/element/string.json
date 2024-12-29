@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "harmony"
+    },
+    {
+      "name": "SocialAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SocialAbility_label",
+      "value": "label"
     }
   ]
 }
