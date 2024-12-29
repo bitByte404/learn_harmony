@@ -1,8 +1,13 @@
 {
   "src": [
-    "pages/Index",
+    "pages/32_router/LoginPage",
     "pages/06_xiecheng/ScrollPage",
     "pages/06_xiecheng/ScrollExample",
-    "pages/20_animation/HotPage"
+    "pages/20_animation/HotPage",
+    "pages/32_router/HomePage",
+    "pages/32_router/RegisterPage",
+    "pages/32_router/ThemePage",
+    "pages/32_router/demo/page/XCF/XCFDemo",
+    "pages/32_router/demo/page/XCF/XCFDetailPage"
   ]
 }

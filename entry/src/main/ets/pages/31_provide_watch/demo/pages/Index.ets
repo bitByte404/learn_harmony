@@ -16,7 +16,7 @@ export default struct Main {
   @Provide totalNum: number = 0
 
   calcFn() {
-    this.totalPrice = 0
+    this.totalPrice = 0.
     this.totalNum = 0
     this.list.forEach((item) => {
       if (this.selectIds.includes(item.id)) {
