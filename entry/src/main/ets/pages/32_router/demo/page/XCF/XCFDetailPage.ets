@@ -20,6 +20,29 @@ struct CategoryPage {
     this.foods = FoodList.filter(item => item.categoryId == this.category.id)
   }
 
+  onPageShow(): void {
+    console.log('cw - onPageShow')
+  }
+
+  onPageHide(): void {
+    console.log('cw - onPageHide')
+  }
+
+  onBackPress(): boolean | void {
+    console.log('cw - onBackPress')
+    // AlertDialog.show({
+    //   title: "确定返回？",
+    //   message: "你要返回？",
+    //   confirm: {
+    //     value: "确认",
+    //     action: () => {
+    //       return false
+    //     },
+    //   },
+    // })
+    // return true
+  }
+
   build() {
     Column() {
       // 顶部
@@ -74,6 +97,14 @@ struct CategoryPage {
 
 @Component
 struct TopCom {
+  aboutToAppear(): void {
+    console.log('组件要构建了')
+  }
+
+  aboutToDisappear(): void {
+    console.log('组件要销毁了')
+  }
+
   category: Category = {
     id: '',
     title: '',
