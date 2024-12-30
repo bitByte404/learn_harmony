@@ -19,6 +19,14 @@
     {
       "name": "SocialAbility_label",
       "value": "label"
+    },
+    {
+      "name": "antTree_desc",
+      "value": "description"
+    },
+    {
+      "name": "antTree_label",
+      "value": "tree"
     }
   ]
 }

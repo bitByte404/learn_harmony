@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "鸿蒙酱"
+    },
+    {
+      "name": "SocialAbility_label",
+      "value": "社交"
+    },
+    {
+      "name": "antTree_label",
+      "value": "蚂蚁森林"
     }
   ]
 }

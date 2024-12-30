@@ -12,6 +12,7 @@
     "pages/33_module/payothers",
     "pages/33_module/getmoney",
     "pages/32_router/demo/page/XCF/XCFDetailPage",
-    "pages/33_module/SocialPage"
+    "pages/33_module/SocialPage",
+    "pages/33_module/TreeIndex"
   ]
 }
