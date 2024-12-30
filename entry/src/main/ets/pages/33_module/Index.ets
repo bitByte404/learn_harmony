@@ -1,42 +1,7 @@
 import { router } from '@kit.ArkUI'
 import { common, Want } from '@kit.AbilityKit'
 
-interface IObj {
-  count: number
-  msg: string
-  desc: string
-  car: Car
-}
-
-export  interface Car {
-  brand: string,
-  price: number
-}
-
-let localObj: IObj = {
-  count: 100,
-  msg: '你好',
-  desc: '哈哈哈哈哈',
-  car: {
-    brand: '宝马',
-    price: 10
-  }
-}
-
-// 将数据缓存到了 LocalStorage
-export const storage = new LocalStorage(localObj)
-
-interface Person {
-  name: string
-  age: number
-}
-
-let obj: Record<string, Person> = {
-  'myFriends': {
-    name: 'zs',
-    age: 18
-  }
-}
+const storage = LocalStorage.getShared()
 
 @Entry(storage)
   // 注册

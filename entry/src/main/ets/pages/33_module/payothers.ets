@@ -1,5 +1,4 @@
-import { storage } from './Index'
-
+const storage = LocalStorage.getShared()
 @Entry(storage)
 @Component
 struct PayPage {
