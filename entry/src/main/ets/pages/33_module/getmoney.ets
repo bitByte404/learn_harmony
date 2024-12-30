@@ -1,4 +1,7 @@
-import { Car, storage } from './Index'
+import { Car } from '../../entryability/EntryAbility'
+import { add50 } from './utils/SetEntryStorage'
+
+const storage = LocalStorage.getShared()
 
 @Entry(storage)
 @Component
@@ -20,7 +23,7 @@ struct MoneyPage {
       Text(`支付模块-收款 ${this.count}`)
         .fontSize(30)
         .onClick(() => {
-          this.count--
+          add50()
         })
     }
     .width('100%')

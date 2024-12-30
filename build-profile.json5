@@ -48,6 +48,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "test",
+      "srcPath": "./test",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
