@@ -13,7 +13,9 @@ let userInfo: IUserInfo = {
 }
 
 // 初始化数据
-AppStorage.setOrCreate('user', userInfo)
+// AppStorage.setOrCreate('user', userInfo)
+// 使用PersistentStorage 持久化保存数据
+PersistentStorage.persistProp('user', userInfo)
 AppStorage.setOrCreate('test', '这是测试文本')
 
 @Entry

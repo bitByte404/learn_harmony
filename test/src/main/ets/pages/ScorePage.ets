@@ -1,4 +1,5 @@
 import { common, Want } from '@kit.AbilityKit'
+import { addScoreBuy, addScoreSignInd, addScoreSing } from '../utils/scoreFns'
 import { IUserInfo } from './Index'
 
 @Entry
@@ -17,12 +18,12 @@ struct Index {
         .fontSize(50)
       Button('消费任务 +50')
         .onClick(() => {
-          this.user.score += 50
+          addScoreBuy()
         })
       Button('唱歌任务 +20')
-        .onClick(() => this.user.score += 20)
+        .onClick(addScoreSing)
       Button('签到任务 +1')
-        .onClick(() => this.user.score += 1)
+        .onClick(addScoreSignInd)
     }
     .height('100%')
     .width('100%')
