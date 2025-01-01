@@ -1,0 +1,34 @@
+
+{
+  "module": {
+    "name": "network",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "NetworkAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "NetworkAbility",
+        "srcEntry": "./ets/networkability/NetworkAbility.ets",
+        "description": "$string:NetworkAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:NetworkAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}
