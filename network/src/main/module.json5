@@ -13,7 +13,7 @@
     "requestPermissions": [
       {
         "name": "ohos.permission.INTERNET"
-      }
+      },
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
