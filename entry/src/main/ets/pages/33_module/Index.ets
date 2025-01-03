@@ -11,7 +11,6 @@ struct Index {
   count: number = 0
   // 获取上下文对象(后续继续直接使用) 相当于导入一个对象，这个对象里有跳转方法
   context = getContext(this) as common.UIAbilityContext;
-
   build() {
     Column({
       space: 20
