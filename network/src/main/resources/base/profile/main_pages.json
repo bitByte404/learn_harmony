@@ -5,6 +5,7 @@
     "pages/EditPage",
     "pages/downloadPage",
     "pages/UploadPage",
-    "pages/ChatPage"
+    "pages/ChatPage",
+    "pages/UserPage"
   ]
 }

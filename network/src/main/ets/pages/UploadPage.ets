@@ -3,16 +3,16 @@ import fs from '@ohos.file.fs';
 import { request } from '@kit.BasicServicesKit';
 import { http } from '@kit.NetworkKit';
 
-interface UploadResponse {
+export interface UploadResponse {
   body: string
 }
 
-interface Response {
+export interface Response {
   message: string
   data: ResponseUrl
 }
 
-interface ResponseUrl {
+export interface ResponseUrl {
   url: string
 }
 
@@ -79,9 +79,6 @@ struct UploadPage {
                 res.on('headerReceive', value => {
                   const uploadRes = value as UploadResponse
                   const response = JSON.parse(uploadRes.body) as Response
-                  // AlertDialog.show({
-                  //   message: `上传成功${response.data.url}`
-                  // })
                   this.imgSrc = response.data.url
                 })
               })
