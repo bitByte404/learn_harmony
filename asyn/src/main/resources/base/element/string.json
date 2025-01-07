@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AsynAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AsynAbility_label",
+      "value": "label"
+    }
+  ]
+}

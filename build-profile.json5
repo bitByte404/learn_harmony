@@ -72,6 +72,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "asyn",
+      "srcPath": "./asyn",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
