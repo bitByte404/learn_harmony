@@ -80,17 +80,15 @@ struct ChatPage {
     .layoutWeight(1)
   }
 
-  chatToRobot(text: string) {
-    req.request(`https://hmajax.itheima.net/api/robot?spoken=${text}`)
-      .then(res => {
-        const chatRes = JSON.parse(res.result.toString()) as ChatRes
-        let item: chatBubble = {
-          content: chatRes.data.info.text,
-          self: false,
-          id: Number(Date.now())
-        }
-        this.chatList.push(item)
-      })
+  async chatToRobot(text: string) {
+    const res = await req.request(`https://hmajax.itheima.net/api/robot?spoken=${text}`)
+    const chatRes = JSON.parse(res.result.toString()) as ChatRes
+    let item: chatBubble = {
+      content: chatRes.data.info.text,
+      self: false,
+      id: Number(Date.now())
+    }
+    this.chatList.push(item)
   }
 
   @Builder

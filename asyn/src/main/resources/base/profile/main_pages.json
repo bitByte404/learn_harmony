@@ -1,5 +1,7 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/index6_province_async",
+    "pages/index8_provice_picker_complete"
   ]
 }
